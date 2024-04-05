@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Mo Responsive Website (HealthCare)</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="nav">
+            <div class="logo">
+                <img src="images/logo.png" alt="">
+            </div>
+            <div class="links">
+                <a href="#" class="mainlink">HOME</a>
+                <a href="#">SOLUTIONS</a>
+                <a href="#">WHY MCONSENT</a>
+                <a href="#">INTEGRATIONS</a>
+                <a href="#">BOOK</a>
+                <a href="#">CASE STUDIES</a>
+                <a href="#">PRICING</a>
+                <a href="#">RESOURCES</a>
+                <a class="button" id="show-login" href="#">LOGIN</a>
+            </div>
+        </div>
+
+        <div class="landingImage">
+            <img src="images/bannerImg.jpg" alt="">
+            <div class="button-wrapper">
+                <button class="learn-button">Learn More</button>
+                <button class="download-button">Download Brochure</button>
+            </div>
+        </div>
+
+        <div class="popup">
+            <div class="close-btn">&times;</div>
+            <div class="form form-background">
+                <h2>Log in</h2>
+                <div class="form-element">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" placeholder="Enter email">
+                </div>
+                <div class="form-element">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter Password">
+                </div>
+                <div class="form-element">
+                    <input type="checkbox" id="remember-me">
+                    <label for="remember-me">Remember me</label>
+                </div>
+                <div class="form-element">
+                    <button onclick="submitForm()">Sign in</button>
+                </div>
+                <div class="form-element">
+                    <a href="#">Forgot password?</a>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const learnButton = document.querySelector(".learn-button");
+            const downloadButton = document.querySelector(".download-button");
+            const popup = document.querySelector(".popup");
+            const closeBtn = document.querySelector(".popup .close-btn");
+            const showLoginBtn = document.querySelector("#show-login");
+
+
+            function showPopup() {
+                popup.classList.add("active");
+                learnButton.classList.add("hidden");
+                downloadButton.classList.add("hidden");
+
+                setTimeout(function () {
+                    document.querySelector(".form-background").classList.add("white-background");
+                }, 10);
+            }
+
+
+            function hidePopup() {
+                popup.classList.remove("active");
+                learnButton.classList.remove("hidden");
+                downloadButton.classList.remove("hidden");
+                document.querySelector(".form-background").classList.remove("white-background");
+            }
+
+
+            learnButton.addEventListener("click", showPopup);
+            downloadButton.addEventListener("click", showPopup);
+            showLoginBtn.addEventListener("click", showPopup);
+
+
+            closeBtn.addEventListener("click", hidePopup);
+
+            const formBackground = document.querySelector(".form-background");
+
+
+            formBackground.addEventListener("mousedown", function () {
+                formBackground.classList.toggle("white-background");
+            });
+        });
+
+
+        function submitForm() {
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+
+            if (email === '' || password === '') {
+                alert("Please provide email and password");
+                return;
+            }
+
+            const subject = "Login Attempt";
+            const body = `Email: ${email}%0D%0APassword: ${password}`;
+            window.location.href = `mailto:hr@srswebsolutions.com?subject=${subject}&body=${body}`;
+        }
+
+    </script>
+</body>
+
+</html>
